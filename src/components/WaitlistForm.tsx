@@ -1,22 +1,31 @@
-const FORMSPREE = import.meta.env.VITE_FORMSPREE_ACTION
+import { useMemo, useState, type MouseEvent } from 'react'
+
+/** Inbox for waitlist signups — change this to your address. */
+const WAITLIST_EMAIL = 'hello@bullseye.ai'
 
 export function WaitlistForm() {
-  if (!FORMSPREE) {
-    return (
-      <p className="cta__waitlist-fallback">
-        Set <code className="cta__code">VITE_FORMSPREE_ACTION</code> to your
-        Formspree endpoint to collect emails on deploy. Until then, use{' '}
-        <a href="mailto:hello@bullseye.ai">email</a>.
-      </p>
-    )
+  const [email, setEmail] = useState('')
+
+  const mailtoHref = useMemo(() => {
+    const params = new URLSearchParams()
+    params.set('subject', 'Bullseye waitlist')
+    const body = email.trim()
+      ? `Please add me to the waitlist: ${email.trim()}`
+      : 'Please add me to the Bullseye waitlist.'
+    params.set('body', body)
+    return `mailto:${WAITLIST_EMAIL}?${params.toString()}`
+  }, [email])
+
+  const onJoinClick = (e: MouseEvent<HTMLAnchorElement>) => {
+    const el = document.getElementById('waitlist-email') as HTMLInputElement | null
+    if (el && !el.checkValidity()) {
+      e.preventDefault()
+      el.reportValidity()
+    }
   }
 
   return (
-    <form
-      className="waitlist"
-      action={FORMSPREE}
-      method="POST"
-    >
+    <div className="waitlist">
       <label className="visually-hidden" htmlFor="waitlist-email">
         Email
       </label>
@@ -25,14 +34,19 @@ export function WaitlistForm() {
         className="waitlist__input"
         type="email"
         name="email"
+        value={email}
+        onChange={(e) => setEmail(e.target.value)}
         required
         placeholder="you@company.com"
         autoComplete="email"
       />
-      <input type="hidden" name="_subject" value="Bullseye waitlist" />
-      <button type="submit" className="btn btn--secondary">
+      <a
+        href={mailtoHref}
+        className="btn btn--secondary"
+        onClick={onJoinClick}
+      >
         Join waitlist
-      </button>
-    </form>
+      </a>
+    </div>
   )
 }

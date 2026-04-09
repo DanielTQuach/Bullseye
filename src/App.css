@@ -929,22 +929,6 @@
   border-color: rgba(20, 184, 166, 0.4);
 }
 
-.cta__waitlist-fallback {
-  margin: 0 0 20px;
-  font-size: 14px;
-  line-height: 1.55;
-  color: var(--text-secondary);
-}
-
-.cta__code {
-  font-family: ui-monospace, monospace;
-  font-size: 12px;
-  padding: 2px 6px;
-  border-radius: 6px;
-  background: rgba(255, 255, 255, 0.06);
-  color: var(--accent-bright);
-}
-
 /* CTA */
 .cta {
   padding: 96px 0 120px;
