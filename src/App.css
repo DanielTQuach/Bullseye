@@ -972,11 +972,23 @@
 
 /* Footer */
 .footer {
-  padding: 32px 24px 48px;
-  border-top: 1px solid rgba(255, 255, 255, 0.05);
+  position: relative;
+  z-index: 1;
+  padding: 20px 24px 30px;
+  margin-top: 12px;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+  background: linear-gradient(
+    to bottom,
+    rgba(255, 255, 255, 0.02),
+    rgba(255, 255, 255, 0.005)
+  );
   text-align: center;
-  font-size: 13px;
+  font-size: 12px;
   color: var(--text-muted);
+}
+
+.footer p {
+  margin: 0;
 }
 
 .footer a {

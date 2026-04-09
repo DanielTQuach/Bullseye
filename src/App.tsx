@@ -458,9 +458,14 @@ export default function App() {
 
       <footer className="footer">
         <p>
-          © {new Date().getFullYear()} Bullseye · Demo router uses static model
-          indices; no personal usage data ·{' '}
-          <a href="#try">How the demo works</a>
+          Built by Daniel Quach (2026) ·{' '}
+          <a
+            href="https://github.com/DanielTQuach/Bullseye"
+            target="_blank"
+            rel="noreferrer"
+          >
+            Source code on GitHub
+          </a>
         </p>
       </footer>
     </div>

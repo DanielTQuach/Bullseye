@@ -60,13 +60,10 @@ export function TryRouter() {
             Try the router
           </h2>
           <p className="try__sub">
-            Task detection uses lightweight rules (regex + heuristics)—good enough to
-            ship a demo; production would add embeddings or a tiny classifier.{' '}
-            <strong>Cost scoring uses real OpenRouter list prices</strong> synced into{' '}
-            <code className="try__code">openrouterPricing.json</code> (run{' '}
-            <code className="try__code">npm run sync:pricing</code>). Quality and
-            “energy/water” columns are still <strong>indices</strong>, not measured
-            kWh or liters—providers don’t expose per-call footprint APIs.
+            This demo routes prompts with lightweight heuristics and model metadata.
+            <strong> Cost scoring uses current OpenRouter list pricing</strong>, while
+            quality, energy, and water remain directional <strong>indices</strong> rather
+            than direct physical measurements.
           </p>
         </div>
 
