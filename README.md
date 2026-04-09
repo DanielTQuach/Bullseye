@@ -1,11 +1,12 @@
 # Bullseye
 
-A **Vite + React** marketing site with an interactive **client-side LLM routing demo**. Visitors paste a prompt; the app infers a task profile, scores models from a fixed registry, and recommends one—plus estimated savings versus a naive multi-model fan-out. **Prompt text never leaves the browser.**
+This repository contains **Bullseye**, a **Vite + React** marketing site with an interactive **client-side LLM routing demo**.
 
 ---
 
 ## Table of contents
 
+- [Purpose](#purpose)
 - [Features](#features)
 - [Tech stack](#tech-stack)
 - [Quick start](#quick-start)
@@ -16,6 +17,18 @@ A **Vite + React** marketing site with an interactive **client-side LLM routing 
 - [Deploying to Vercel](#deploying-to-vercel)
 - [Scripts reference](#scripts-reference)
 - [Limitations and roadmap](#limitations-and-roadmap)
+
+---
+
+## Purpose
+
+Since ChatGPT made LLMs mainstream, new models have shipped at a constant pace. The bottleneck is often no longer raw model capability, but the habit of using one familiar model for every task instead of choosing the right one for each job.
+
+Bullseye is my interpretation of this problem: a routing demo that applies lightweight heuristics and model metadata (quality, latency, and cost signals) to recommend a best-fit model for a given prompt.
+
+OpenRouter is currently one of the best-known products in this space, but its internal selection logic is not public. This project exists to explore those design choices in the open and to better understand what practical model selection looks like across a fast-moving LLM landscape.
+
+Building Bullseye end-to-end also creates room to test product ideas quickly and add features aimed at AI-efficiency-focused users.
 
 ---
 
@@ -127,9 +140,9 @@ If a slug is missing or lacks pricing, the script warns and omits that model fro
 
 ## Analytics
 
-- **Vercel Web Analytics:** Enable **Analytics** on the Vercel project for page views. Custom events use `@vercel/analytics`. No env vars required for that.
+- **Vercel Web Analytics:** Enable **Analytics** on the Vercel project for page views. Custom events use `@vercel/analytics`.
 - **Custom event `route_demo`:** Fired when the user clicks **Route this prompt**. Payload includes `task_profile`, `model_id`, `prompt_len` (length only), `confidence`, and `has_usd_reference`. **Prompt content is never sent.**
-- **Optional:** Set `VITE_ANALYTICS_WEBHOOK` to an **HTTPS** URL in Vercel (or `.env.local`) if you want the same events mirrored to your own endpoint via `sendBeacon` / `fetch`. Skip it if Vercel Analytics is enough.
+- **Optional:** Set `VITE_ANALYTICS_WEBHOOK` to an **HTTPS** URL in Vercel (or `.env.local`) to get the same events mirrored to your own endpoint via `sendBeacon` / `fetch`.
 
 ---
 
